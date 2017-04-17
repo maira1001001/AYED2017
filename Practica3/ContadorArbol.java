@@ -47,6 +47,7 @@ public class ContadorArbol {
 	
 	public static void main(String args[]){
 		
+		//creo el arbol de prueba
 		ArbolBinario<Integer> a = new ArbolBinario<Integer>(new Integer(7));
 		ArbolBinario<Integer> b = new ArbolBinario<Integer>(new Integer(15));
 		ArbolBinario<Integer> c = new ArbolBinario<Integer>(new Integer(20));
@@ -67,22 +68,30 @@ public class ContadorArbol {
 		c.agregarHijoDerecho(d);
 		i.agregarHijoIzquierdo(h);
 		
-		//				30
-		//			 /  	\
-		//			15		44
-		//         /  \	   /  \
-		//		  7	  20  36  50
-		//			    \     /
+		//              30
+		//            /    \
+		//           15     44
+		//          / \     / \
+		//          7  20  36  50
+		//               \    /
 		//              25   47
 		
 		ListaDeEnterosEnlazada listaInOrder = new ListaDeEnterosEnlazada();
 		ListaDeEnterosEnlazada listaPreOrder = new ListaDeEnterosEnlazada();
+		
 		ContadorArbol.numerosParesInOrder(e, listaInOrder);
 		//listaInOrder -> (izquierda, raiz, derecha)
-		// resultado: 20, 30, 36, 44, 50
+		//resultado: 20, 30, 36, 44, 50
+		
 		ContadorArbol.numerosParesPreOrder(e, listaPreOrder);
 		//listaPreOrder -> (raiz, izquierda, derecha)
-		// resultado: 30, 20, 44, 36, 50
+		//resultado: 30, 20, 44, 36, 50
+		
+		System.out.println("Lista de valores PreOrder");
+		listaPreOrder.imprimirValores();
+		
+		System.out.println("\r\n Lista de valores InOrder");
+		listaInOrder.imprimirValores();
 		
 	}
 }
