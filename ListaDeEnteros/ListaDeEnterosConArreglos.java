@@ -104,4 +104,10 @@ public class ListaDeEnterosConArreglos extends ListaDeEnteros {
 		return tamanio;
 	}
 
+	@Override
+	public void imprimirValores(){
+		for(int e : datos){
+			System.out.print(e + " | ");
+		}
+	}
 }

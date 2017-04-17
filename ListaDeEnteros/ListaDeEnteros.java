@@ -18,5 +18,7 @@ public abstract class ListaDeEnteros {
 	public abstract boolean incluye(Integer elem);
 	public abstract boolean esVacia();
 	public abstract int tamanio();
+	
+	public abstract void imprimirValores();
 
 }

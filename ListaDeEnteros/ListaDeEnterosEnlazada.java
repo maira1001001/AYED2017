@@ -150,4 +150,12 @@ public class ListaDeEnterosEnlazada extends ListaDeEnteros {
 	public int tamanio() {
 		return tamanio;
 	}
+	
+	@Override
+	public void imprimirValores(){
+		this.comenzar();
+		while(!this.fin()){
+			System.out.print(this.proximo() + " | ");
+		}
+	}
 }
