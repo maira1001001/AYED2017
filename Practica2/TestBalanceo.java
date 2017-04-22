@@ -19,8 +19,6 @@ public class TestBalanceo {
 		return (str.length()%2 != 0);
 	}
 	
-	
-	
 	public boolean estaBalanceado(String str){
 		if (esVacio(str)) return true;
 		if (cantidadImpar(str)) return false;
@@ -65,17 +63,17 @@ public class TestBalanceo {
 		
 		TestBalanceo  test = new TestBalanceo();
 		boolean result1 = test.estaBalanceado(s1);
-		System.out.println("El string vacio, Resultado: "+ result1);
+		System.out.println("El string vacio- Resultado: "+ result1);
 		boolean result2 = test.estaBalanceado(s2);
-		System.out.println("El string (([])) Resultado: "+ result2);
+		System.out.println("El string vacio- Resultado: "+ result2);
 		boolean result3 = test.estaBalanceado(s3);
-		System.out.println("El string [}}} Resultado: "+ result3);
+		System.out.println("El string vacio- Resultado: "+ result3);
 		boolean result4 = test.estaBalanceado(s4);
-		System.out.println("El string [{)}]  Resultado: "+ result4);
+		System.out.println("El string vacio- Resultado: "+ result4);
 		boolean result5 = test.estaBalanceado(s5);
-		System.out.println("El string }{()  Resultado: "+ result5);
+		System.out.println("El string vacio- Resultado: "+ result5);
 		boolean result6 = test.estaBalanceado(s6);
-		System.out.println("El string {}[]() Resultado: "+ result6);
+		System.out.println("El string vacio- Resultado: "+ result6);
 		
 	}
 }
