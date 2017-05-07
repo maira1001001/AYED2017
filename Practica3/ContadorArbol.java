@@ -3,50 +3,10 @@ package tp03.ejercicio1;
 import tp02.ejercicio1.ListaDeEnterosEnlazada;
 
 public class ContadorArbol {
-
 	
-	private static boolean esPar(int n){
-		return n%2 == 0;
-	}
+	private ArbolBinario<Integer> arbol;
 	
-	public static void numerosParesPreOrder(ArbolBinario<Integer> arbol, ListaDeEnterosEnlazada lista){
-		
-		//proceso Raiz
-		if (esPar(arbol.getDatoRaiz())){
-			lista.agregarFinal(arbol.getDatoRaiz());
-		}
-
-		//hijo Izquierdo		
-		if (!arbol.getHijoIzquierdo().esVacio()){
-			numerosParesPreOrder(arbol.getHijoIzquierdo(), lista);
-		}
-		
-		//hijo Derecho
-		if (!arbol.getHijoDerecho().esVacio()){
-			numerosParesPreOrder(arbol.getHijoDerecho(), lista);
-		}
-	}
-	
-	public static void numerosParesInOrder(ArbolBinario<Integer> arbol, ListaDeEnterosEnlazada lista){
-		
-		//hijo Izquierdo
-		if (!arbol.getHijoIzquierdo().esVacio()){
-			numerosParesInOrder(arbol.getHijoIzquierdo(), lista);
-		}
-		
-		//proceso Raiz
-		if (esPar(arbol.getDatoRaiz())){
-			lista.agregarFinal(arbol.getDatoRaiz());
-		}
-		
-		//hijo Derecho
-		if (!arbol.getHijoDerecho().esVacio()){
-			numerosParesInOrder(arbol.getHijoDerecho(), lista);
-		}
-	}
-	
-	public static void main(String args[]){
-		
+	private ArbolBinario<Integer> generarArbol(){
 		//creo el arbol de prueba
 		ArbolBinario<Integer> a = new ArbolBinario<Integer>(new Integer(7));
 		ArbolBinario<Integer> b = new ArbolBinario<Integer>(new Integer(15));
@@ -68,30 +28,76 @@ public class ContadorArbol {
 		c.agregarHijoDerecho(d);
 		i.agregarHijoIzquierdo(h);
 		
-		//              30
-		//            /    \
-		//           15     44
-		//          / \     / \
-		//          7  20  36  50
-		//               \    /
-		//              25   47
+		return e;
+				
+				//              30
+				//             /   \
+				//            15    44
+				//           / \    /  \
+				//          7  20  36  50
+				//               \     /
+				//               25    47	
+	}
+	
+	public ContadorArbol(){
+		arbol = generarArbol();
+	}
+	
+	private static boolean esPar(int n){
+		return n%2 == 0;
+	}
+	
+	private void numerosParesPreOrder(ArbolBinario<Integer> a, ListaDeEnterosEnlazada lista){
 		
-		ListaDeEnterosEnlazada listaInOrder = new ListaDeEnterosEnlazada();
-		ListaDeEnterosEnlazada listaPreOrder = new ListaDeEnterosEnlazada();
+		//proceso Raiz
+		if (esPar(a.getDatoRaiz())){
+			lista.agregarFinal(a.getDatoRaiz());
+		}
+
+		//hijo Izquierdo		
+		if (!a.getHijoIzquierdo().esVacio()){
+			numerosParesPreOrder(a.getHijoIzquierdo(), lista);
+		}
 		
-		ContadorArbol.numerosParesInOrder(e, listaInOrder);
-		//listaInOrder -> (izquierda, raiz, derecha)
-		//resultado: 20, 30, 36, 44, 50
+		//hijo Derecho
+		if (!a.getHijoDerecho().esVacio()){
+			numerosParesPreOrder(a.getHijoDerecho(), lista);
+		}
+	}
+	
+	private void numerosParesInOrder(ArbolBinario<Integer> a, ListaDeEnterosEnlazada lista){
 		
-		ContadorArbol.numerosParesPreOrder(e, listaPreOrder);
-		//listaPreOrder -> (raiz, izquierda, derecha)
-		//resultado: 30, 20, 44, 36, 50
+		//hijo Izquierdo
+		if (!a.getHijoIzquierdo().esVacio()){
+			numerosParesInOrder(a.getHijoIzquierdo(), lista);
+		}
 		
-		System.out.println("Lista de valores PreOrder");
-		listaPreOrder.imprimirValores();
+		//proceso Raiz
+		if (esPar(a.getDatoRaiz())){
+			lista.agregarFinal(a.getDatoRaiz());
+		}
 		
-		System.out.println("\r\n Lista de valores InOrder");
-		listaInOrder.imprimirValores();
+		//hijo Derecho
+		if (!arbol.getHijoDerecho().esVacio()){
+			numerosParesInOrder(a.getHijoDerecho(), lista);
+		}
+	}
+	
+	public ListaDeEnteros numerosPares(){
+		ListaDeEnterosEnlazada lista = new ListaDeEnterosEnlazada();
+		this.numerosParesInOrder(arbol, lista);
+		//this.numerosParesPreOrder(arbol, lista);
+		return lista;
+	}
+	
+	public static void main(String args[]){
 		
+		ContadorArbol contador = new ContadorArbol();
+		ListaDeEnteros resultados = contador.numerosPares();
+		
+		System.out.println("Lista de valores");
+		resultados.imprimirValores();
+
+			
 	}
 }
